@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins
+          servicePort: 80
+    host: jenkins.example.com
+  tls:
+  # 如果不是泛域名证书可以不用指定 hosts
+  # 因为它会自动读取证书中的 CN 字段
+  - hosts:
+    - jenkins.example.com
+  - secretName: xxx
